@@ -3,8 +3,7 @@
 A simple marketplace for bartering; trading by exchanging one commodity for
 another.
 
-This is an exercise to learn Go following the [Let's Go]
-(https://lets-go.alexedwards.net/) book.
+This is an exercise to learn Go following the [Let's Go](https://lets-go.alexedwards.net/) book.
 
 ## Setting up the database
 
