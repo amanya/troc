@@ -41,9 +41,9 @@ func (m *TrocModel) Get(id int)(Troc, error) {
 
 	row := m.DB.QueryRow(stmt, id)
 
-	var s Troc
+	var t Troc
 
-	err := row.Scan(&s.ID, &s.Title, &s.Content, &s.Created, &s.Expires)
+	err := row.Scan(&t.ID, &t.Title, &t.Content, &t.Created, &t.Expires)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return Troc{}, ErrNoRecord
@@ -51,7 +51,7 @@ func (m *TrocModel) Get(id int)(Troc, error) {
 			return Troc{}, nil
 		}
 	}
-	return Troc{}, nil
+	return t, nil
 }
 
 func (m *TrocModel) Latest() ([]Troc, error) {

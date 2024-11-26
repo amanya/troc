@@ -3,7 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
-	// "html/template"
+
 	"net/http"
 	"strconv"
 
@@ -19,26 +19,10 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	for _, troc := range trocs {
-		fmt.Fprintf(w, "%+v\n", troc)
-	}
+	data := app.newTemplateData(r)
+	data.Trocs = trocs
 
-	// files := []string{
-	// 	"./ui/html/base.tmpl",
-	// 	"./ui/html/partials/nav.tmpl",
-	// 	"./ui/html/pages/home.tmpl",
-	// }
-
-	// ts, err := template.ParseFiles(files...)
-	// if err != nil {
-	// 	app.serverError(w, r, err)
-	// 	return
-	// }
-
-	// err = ts.ExecuteTemplate(w, "base", nil)
-	// if err != nil {
-	// 	app.serverError(w, r, err)
-	// }
+	app.render(w, r, http.StatusOK, "home.tmpl", data)
 }
 
 func (app *application) trocView(w http.ResponseWriter, r *http.Request) {
@@ -59,7 +43,10 @@ func (app *application) trocView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "%+v", troc)
+	data := app.newTemplateData(r)
+	data.Troc = troc
+
+	app.render(w, r, http.StatusOK, "view.tmpl", data)
 }
 
 func (app *application) trocCreate(w http.ResponseWriter, r *http.Request) {
