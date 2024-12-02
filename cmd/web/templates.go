@@ -12,6 +12,7 @@ type templateData struct {
 	CurrentYear int
 	Troc models.Troc
 	Trocs []models.Troc
+	Form any
 }
 
 func humanDate(t time.Time) string {
