@@ -91,5 +91,7 @@ func (app *application) trocCreatePost(w http.ResponseWriter, r *http.Request) {
 		app.serverError(w, r, err)
 	}
 
+	app.sessionManager.Put(r.Context(), "flash", "Troc successfully created!")
+
 	http.Redirect(w, r, fmt.Sprintf("/troc/view/%d", id), http.StatusSeeOther)
 }

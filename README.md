@@ -59,3 +59,15 @@ CREATE USER 'web'@'localhost';
 GRANT SELECT, INSERT, UPDATE, DELETE ON trocs.* to 'web'@'localhost';
 ALTER USER 'web'@'localhost' IDENTIFIED BY 'pass';
 ```
+
+Create the sessions table for the session manager
+
+```sql
+CREATE TABLE sessions (
+	token CHAR(43) PRIMARY KEY,
+	data BLOB NOT NULL,
+	expiry TIMESTAMP(6) NOT NULL
+);
+
+CREATE INDEX sessions_expiry_idx ON sessions (expiry);
+```

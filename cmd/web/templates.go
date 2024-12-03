@@ -13,6 +13,7 @@ type templateData struct {
 	Troc models.Troc
 	Trocs []models.Troc
 	Form any
+	Flash string
 }
 
 func humanDate(t time.Time) string {
