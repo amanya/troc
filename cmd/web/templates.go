@@ -14,6 +14,8 @@ type templateData struct {
 	Trocs []models.Troc
 	Form any
 	Flash string
+	IsAuthenticated bool
+	CSRFToken string
 }
 
 func humanDate(t time.Time) string {
