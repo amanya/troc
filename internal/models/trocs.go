@@ -6,6 +6,12 @@ import (
 	"time"
 )
 
+type TrocModelInterface interface {
+	Insert(title string, content string, expires int) (int, error)
+	Get(id int) (Troc, error)
+	Latest() ([]Troc, error)
+}
+
 type Troc struct {
 	ID int
 	Title string
